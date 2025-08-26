@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 95%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #007BFF;
+      color: #fff;
+      padding: 10px 15px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h2>Student Login</h2>
+      <form onsubmit="showRegister(event)">
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter Mobile Number" required pattern="[0-9]{10}">
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <!-- Registration Form -->
+    <div id="registerForm" class="hidden">
+      <h2>Student Registration</h2>
+      <form onsubmit="alert('Registration Successful!'); return false;">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="">--Select--</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="course">Course:</label>
+        <select id="course" name="course" required>
+          <option value="">--Select Course--</option>
+          <option value="B.Sc">B.Sc</option>
+          <option value="B.Com">B.Com</option>
+          <option value="B.A">B.A</option>
+          <option value="B.Tech">B.Tech</option>
+          <option value="BBA">BBA</option>
+          <option value="MBA">MBA</option>
+          <option value="M.Tech">M.Tech</option>
+        </select>
+
+        <label for="username">Create Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Set Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    function showRegister(event) {
+      event.preventDefault();
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("registerForm").classList.remove("hidden");
+    }
+
+    // Password validation
+    document.addEventListener("submit", function(e) {
+      if (e.target.closest("#registerForm")) {
+        let pass = document.getElementById("password").value;
+        let confirmPass = document.getElementById("confirm_password").value;
+        if (pass !== confirmPass) {
+          e.preventDefault();
+          alert("Passwords do not match!");
+        }
+      }
+    });
+  </script>
+</body>
+</html>
